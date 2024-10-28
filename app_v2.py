@@ -1,7 +1,8 @@
 from MTM import matchTemplates
 import cv2
 import matplotlib.pyplot as plt
-
+from PIL import Image
+import os
 
 cropping = False
 x1, y1, x2, y2 = 0, 0, 0, 0
@@ -29,13 +30,14 @@ def mouse_crop(event, x, y, flags, param):
         cv2.rectangle(param, (x1, y1), (x2, y2), (0, 255, 0), 2)
         cv2.imshow("Image", param)
 
-def main():
-    image_path = "img/coins.jpg" 
-    original_image = cv2.imread(image_path)
 
-    if original_image is None:
-        print("Error: Could not load the image.")
-        return
+image_path = "img/coins.jpg" 
+original_image = cv2.imread(image_path)
+
+if original_image is None:
+    print("Error: Could not load the image.")
+
+else:
 
     clone = original_image.copy()
     cv2.namedWindow("Image")
@@ -69,8 +71,8 @@ def main():
             break
 
     cv2.destroyAllWindows()
-    
-    
+
+
     image = cv2.imread(image_path, -1)
     template = cv2.imread('cropped_image.jpg', -1)
 
@@ -96,6 +98,4 @@ def main():
     # Display the image with rectangles
     plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
     plt.show()
-
-if __name__ == "__main__":
-    main()
+    Image.fromarray(image).save(os.path.join('results', 'result_2.png'))
