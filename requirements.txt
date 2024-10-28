@@ -1,0 +1,5 @@
+streamlit==1.39.0
+MTM==1.0.0
+numpy==1.23.2
+opencv_python_headless==4.6.0.66
+pillow==11.0.0
